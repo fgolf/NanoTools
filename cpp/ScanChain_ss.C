@@ -94,12 +94,16 @@ int ScanChain(TChain *ch) {
 
             int njets, nbtags;
             float ht;
-            std::tie(njets,nbtags,ht) = getJetInfo(leps);
+            //std::tie(njets,nbtags,ht) = getJetInfo(leps);
+            njets=1;
+            nbtags=1;
+            ht=1.;
 
             float mll = (lep1.p4()+lep2.p4()).M();
             int type = lep1.is_el() + lep2.is_el(); // mm, em, ee
             float met = MET_pt();
-            bool passfilt = passesMETfilters(false);
+            //bool passfilt = passesMETfilters(false);
+            bool passfilt = true;
 
             debug(passfilt,nbtags,met,njets,nleps);
 
@@ -108,7 +112,8 @@ int ScanChain(TChain *ch) {
 
             // if (hyp_class != 3 && hyp_class != 4) continue;
 
-            float weight = genWeight();
+            //float weight = genWeight();
+            float weight = 1;
 
             h_type->Fill(type);
             h_mll->Fill(mll);
